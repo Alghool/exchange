@@ -1,5 +1,5 @@
 deployment:
 tasks:
   - export DEPLOYPATH=/home/alghool/projects_core/exchange/
-  - /bin/cp -R ./ $DEPLOYPATH
+  - /bin/cp -R . $DEPLOYPATH
   - $DEPLOYPATH/composer install
