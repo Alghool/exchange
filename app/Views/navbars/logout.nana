@@ -2,7 +2,7 @@
 
 {% block mainmenu %}
 	<li>
-		<a id="menu-home" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
+		<a id="menu-home" href="/" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
 	</li>
 	<li class="menu-megamenu-li">
 		<a id="menu-pages" class="mdl-button mdl-js-button mdl-js-ripple-effect">Documents</a>
@@ -18,6 +18,6 @@
 {% endblock %}
 
 {% block action_area %}
-	<button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button>
-	<button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button>
+	<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button></a>
+	<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment"> sign up</button></a>
 {% endblock %}

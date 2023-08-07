@@ -7,22 +7,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	<!-- Font Awesoeme Stylesheet CSS -->
-	<link rel="stylesheet" href="style/font-awesome.min.css" />
+	<link rel="stylesheet" href="/style/font-awesome.min.css" />
 	<!-- Google web Font -->
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="style/bootstrap.min.css">
+	<link rel="stylesheet" href="/style/bootstrap.min.css">
 	<!-- Material Design Lite Stylesheet CSS -->
-	<link rel="stylesheet" href="style/material.min.css" />
+	<link rel="stylesheet" href="/style/material.min.css" />
 	<!-- Animate Stylesheet CSS -->
-	<link rel="stylesheet" href="style/animate.min.css" />
+	<link rel="stylesheet" href="/style/animate.min.css" />
 
 	{% block style %}{% endblock %}
 
 	<!-- Custom Main Stylesheet CSS -->
-	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="/style/style.css">
 	<!-- Main Color Stylesheet CSS -->
-	<link rel="stylesheet" href="style/style-purple.css">
+	<link rel="stylesheet" href="/style/style-purple.css">
 
 
 
@@ -154,17 +154,17 @@
 </footer><!-- End of Footer Section -->
 
 	<!-- Jquery Library 2.1 JavaScript-->
-	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
 	<!-- Popper JavaScript-->
-	<script src="js/popper.min.js"></script>
+	<script src="/js/popper.min.js"></script>
 	<!-- Bootstrap Core JavaScript-->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<!-- Material Design Lite JavaScript-->
-	<script src="js/material.min.js"></script>
+	<script src="/js/material.min.js"></script>
 	<!-- SmoothScroll Plugin JavaScript-->
-	<script src="js/smoothscroll.min.js"></script>
+	<script src="/js/smoothscroll.min.js"></script>
 	{% block JS %}{% endblock %}
 	<!--Custom JavaScript for Klinik Template-->
-	<script src="js/custom.js"></script>
+	<script src="/js/custom.js"></script>
 </body>
 </html>

@@ -244,7 +244,6 @@
             items: 1,
             dots: true
         });
-        alert("here");
     }
     if (typeof  $("#hm-doctor-slider").owlCarousel === "function") {
         //Home Doctor Slider

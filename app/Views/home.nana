@@ -2,12 +2,12 @@
 
 {% block style %}
 	<!-- Owl Carousel Stylesheet CSS -->
-	<link rel="stylesheet" href="style/owl.carousel.min.css" />
+	<link rel="stylesheet" href="/style/owl.carousel.min.css" />
 {% endblock %}
 
 {% block JS %}
 	<!-- Owl Carousel Plugin JavaScript-->
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -22,8 +22,8 @@
 						Your global marketplace to easily buy and sell validated pre-IPO high grade investments.
 					</p>
 					<div class="hm-service-view text-center">
-						<button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button>
-						<button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button>
+						<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button></a>
+						<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button></a>
 					</div>
 				</div>
 				<div class="col-md-5">
@@ -87,20 +87,6 @@
 			</div>
 		</div>
 	</div><!-- End Testimonial Section -->
-	<!-- Start Emergency Section -->
-	<div id="emergency">
-		<div class="layer-stretch">
-			<div class="layer-wrapper">
-				<div class="layer-ttl">
-					<h3>On Emergency</h3>
-				</div>
-				<div class="layer-container">
-					<div class="paragraph-medium paragraph-black">
-						At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.
-					</div>
-					<div class="emergency-number">Call : 0000000000</div>
-				</div>
-			</div>
-		</div>
-	</div><!-- End Emergency Section -->
+
+	{{ include('widgets/emergancy.nana') }}
 {% endblock %}
