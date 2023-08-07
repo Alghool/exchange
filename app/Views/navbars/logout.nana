@@ -1,1 +1,23 @@
-<div>this is the logout navbar</div>
+{% extends "navbars/navbar_layout.nana" %}
+
+{% block mainmenu %}
+	<li>
+		<a id="menu-home" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
+	</li>
+	<li class="menu-megamenu-li">
+		<a id="menu-pages" class="mdl-button mdl-js-button mdl-js-ripple-effect">Documents</a>
+	</li>
+	<li>
+		<a id="menu-service" class="mdl-button mdl-js-button mdl-js-ripple-effect">Investment</a>
+	</li>
+	<li class="menu-megamenu-li">
+		<a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">News</a>
+	</li>
+
+	<li class="mobile-menu-close"><i class="fa fa-times"></i></li>
+{% endblock %}
+
+{% block action_area %}
+	<button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button>
+	<button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button>
+{% endblock %}

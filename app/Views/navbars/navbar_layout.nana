@@ -1,0 +1,28 @@
+<!-- Start Header -->
+<header id="header">
+	<!-- Start Main Header Section -->
+	<div id="hdr-wrapper">
+		<div class="layer-stretch hdr">
+			<div class="tbl">
+				<div class="tbl-row">
+					<!-- Start Header Logo Section -->
+					<div class="tbl-cell hdr-logo">
+						<a href="index.html"><img src="assets/logo.jpeg" alt=""></a>
+					</div><!-- End Header Logo Section -->
+					<div class="tbl-cell hdr-menu">
+						<!-- Start Menu Section -->
+						<ul class="menu">
+							{% block mainmenu %}{% endblock %}
+						</ul><!-- End Menu Section -->
+
+						<div id="menu-bar"><a><i class="fa fa-bars"></i></a></div>
+					</div>
+					<div class="tbl-cell " style="text-align: right">
+						{% block action_area %}{% endblock %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- End Main Header Section -->
+</header><!-- End Header -->

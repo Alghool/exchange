@@ -1,9 +1,106 @@
 {% extends "layouts/main_layout.nana" %}
 
+{% block style %}
+	<!-- Owl Carousel Stylesheet CSS -->
+	<link rel="stylesheet" href="style/owl.carousel.min.css" />
+{% endblock %}
 
+{% block JS %}
+	<!-- Owl Carousel Plugin JavaScript-->
+	<script src="js/owl.carousel.min.js"></script>
+{% endblock %}
 
 {% block content %}
+	<div id="hm-service" class="layer-stretch">
+		<div class="layer-wrapper">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="layer-ttl ">
+						<h3>Marketplace</h3>
+					</div>
+					<p class="paragraph-medium paragraph-black">
+						Your global marketplace to easily buy and sell validated pre-IPO high grade investments.
+					</p>
+					<div class="hm-service-view text-center">
+						<button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button>
+						<button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<img  src="assets/analytic.svg" alt="">
+				</div>
 
-	<h3>are you mahmoud alghool</h3>
-
+			</div>
+		</div>
+	</div>
+	<!-- Start Testimonial Section -->
+	<div id="testimonial" class="colored-background">
+		<div class="layer-stretch">
+			<div class="layer-wrapper">
+				<div class="layer-ttl layer-ttl-white">
+					<h3>What People Say</h3>
+				</div>
+				<div class="layer-container">
+					<div id="testimonial-slider" class="owl-carousel owl-theme theme-owl-dot">
+						<div class="testimonial-block">
+							<img class="img-responsive" src="uploads/testimonial-1.jpg" alt="">
+							<div class="paragraph-medium paragraph-white">
+								<i class="fa fa-quote-left"></i>
+								This was my second visit here I loved it first visit but love it more on my second visit. I loved thier facility and online system. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam veniam sit nemo eveniet recusandae nihil nesciunt rerum alias.
+							</div>
+							<a>Reuben Snow</a>
+						</div>
+						<div class="testimonial-block">
+							<img class="img-responsive" src="uploads/testimonial-2.jpg" alt="">
+							<div class="paragraph-medium paragraph-white">
+								<i class="fa fa-quote-left"></i>
+								Thank you for the remedy. I feel it has been working on a deeper subtle level. An inner seeing. I have had the feeling of a melting inside and great sense of peace and rightness. I experienced this before with your perception and treatment so thank you very much.
+							</div>
+							<a>Julien Cain</a>
+						</div>
+						<div class="testimonial-block">
+							<img class="img-responsive" src="uploads/testimonial-3.jpg" alt="">
+							<div class="paragraph-medium paragraph-white">
+								<i class="fa fa-quote-left"></i>
+								Thank you for the remedy. I feel it has been working on a deeper subtle level. An inner seeing. I have had the feeling of a melting inside and great sense of peace and rightness. I experienced this before with your perception and treatment so thank you very much.
+							</div>
+							<a>Naum Gabo</a>
+						</div>
+						<div class="testimonial-block">
+							<img class="img-responsive" src="uploads/testimonial-4.jpg" alt="">
+							<div class="paragraph-medium paragraph-white">
+								<i class="fa fa-quote-left"></i>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias corporis ad veniam, illo expedita aut quaerat voluptatem, magni voluptas necessitatibus omnis error quia deserunt asperiores beatae fugiat quisquam magnam mollitia!
+							</div>
+							<a>Winceton Logo</a>
+						</div>
+						<div class="testimonial-block">
+							<img class="img-responsive" src="uploads/testimonial-5.jpg" alt="">
+							<div class="paragraph-medium paragraph-white">
+								<i class="fa fa-quote-left"></i>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias corporis ad veniam, illo expedita aut quaerat voluptatem, magni voluptas necessitatibus omnis error quia deserunt asperiores beatae fugiat quisquam magnam mollitia!
+							</div>
+							<a>Robert Bratheon</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- End Testimonial Section -->
+	<!-- Start Emergency Section -->
+	<div id="emergency">
+		<div class="layer-stretch">
+			<div class="layer-wrapper">
+				<div class="layer-ttl">
+					<h3>On Emergency</h3>
+				</div>
+				<div class="layer-container">
+					<div class="paragraph-medium paragraph-black">
+						At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas.
+					</div>
+					<div class="emergency-number">Call : 0000000000</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- End Emergency Section -->
 {% endblock %}
