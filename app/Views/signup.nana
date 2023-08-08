@@ -15,42 +15,45 @@
 
 	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Sign Up'}) }}
 
+
 	<!-- Start Register Section -->
 	<div class="layer-stretch">
 		<div class="layer-wrapper">
 			<div class="form-container">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-					<i class="fa fa-user-o"></i>
-					<input class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]*" id="register-name">
-					<label class="mdl-textfield__label" for="register-name">Full name <em> *</em></label>
-					<span class="mdl-textfield__error">Please Enter Valid Name!</span>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-					<i class="fa fa-envelope-o"></i>
-					<input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="register-email">
-					<label class="mdl-textfield__label" for="register-email">Email <em> *</em></label>
-					<span class="mdl-textfield__error">Please Enter Valid Email!</span>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-					<i class="fa fa-key"></i>
-					<input class="mdl-textfield__input" type="password" id="register-password">
-					<label class="mdl-textfield__label" for="register-password">Password <em> *</em></label>
-					<span class="mdl-textfield__error">Please Enter Valid Password(Min 6 Character)!</span>
-				</div>
-				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label form-input-icon">
-					<i class="fa fa-angle-double-down"></i>
-					<select class="mdl-selectfield__select" id="sample-selectlist-1">
-						<option value="" disabled>&nbsp;</option>
-						<option value="lister">lister</option>
-						<option value="investor">investor</option>
-					</select>
-					<label class="mdl-selectfield__label" for="sample-selectlist-1">Who are you</label>
-				</div>
+				<form id="signup_form" action="/user/signup" method="post">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-user-o"></i>
+						<input name="name" class="mdl-textfield__input" type="text" id="register-name">
+						<label class="mdl-textfield__label" for="register-name">Full name <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Name!</span>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-envelope-o"></i>
+						<input name="email" class="mdl-textfield__input" type="email" id="register-email">
+						<label class="mdl-textfield__label" for="register-email">Email <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Email!</span>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-key"></i>
+						<input name="password" class="mdl-textfield__input" type="password" id="register-password">
+						<label class="mdl-textfield__label" for="register-password">Password <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Password(Min 6 Character)!</span>
+					</div>
+					<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label form-input-icon">
+						<i class="fa fa-angle-double-down"></i>
+						<select name="type" class="mdl-selectfield__select" id="sample-selectlist-1">
+							<option value="" disabled>&nbsp;</option>
+							<option value="lister">lister</option>
+							<option value="investor">investor</option>
+						</select>
+						<label class="mdl-selectfield__label" for="sample-selectlist-1">Who are you</label>
+					</div>
 
-				<div class="login-condition">By clicking Creat Account you agree to our<br /><a href="#">terms &#38; condition</a></div>
-				<div class="form-submit">
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Create Account</button>
-				</div>
+					<div class="login-condition">By clicking Creat Account you agree to our<br /><a href="#">terms &#38; condition</a></div>
+					<div class="form-submit">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"  type="submit" value="Submit" >Sign Up</button>
+					</div>
+				</form>
 				<div class="login-link">
 					<span class="paragraph-small">Already have an account?</span>
 					<a href="/user/signin" class="">Login Now</a>
@@ -59,6 +62,7 @@
 
 		</div>
 	</div><!-- End Register Section -->
+
 	{{ include('widgets/emergancy.nana') }}
 
 {% endblock %}
