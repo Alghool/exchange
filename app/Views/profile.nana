@@ -1,0 +1,99 @@
+{% extends "layouts/main_layout.nana" %}
+
+{% block style %}
+<!-- Material Design Select Field Stylesheet CSS -->
+<link rel="stylesheet" href="/style/mdl-selectfield.min.css">
+{% endblock %}
+
+{% block JS %}
+<!-- Material Select Field Script -->
+<script src="/js/mdl-selectfield.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Profile'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+
+	<!-- Start Login Section -->
+	<div id="login-page" class="layer-stretch">
+		<div class="layer-wrapper">
+			<div class="form-container">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-user-o"></i>
+					<input name="name" class="mdl-textfield__input" type="text" id="register-name" value="{{ user.name }}">
+					<label class="mdl-textfield__label" for="register-name">Full name <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid Name!</span>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-envelope-o"></i>
+					<input name="email" class="mdl-textfield__input" type="email" id="register-email" disabled  value="{{ user.email }}">
+					<label class="mdl-textfield__label" for="register-email">Email <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid Email!</span>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-id-card-o"></i>
+					<input name="id" class="mdl-textfield__input" type="text" id="register-id" required value="{{ user.id }}">
+					<label class="mdl-textfield__label" for="register-id">ID <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid ID!</span>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-pull-right-o"></i>
+					<input name="proof_id" class="mdl-textfield__input" type="text" id="register-proof-id" value="">
+					<label class="mdl-textfield__label" for="register-proof-id">proof of id <em> *</em></label>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-address-book-o"></i>
+					<input name="address" class="mdl-textfield__input" type="text" id="register-name" value="{{ user.address }}">
+					<label class="mdl-textfield__label" for="register-address">Address <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid Address!</span>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-pull-right-o"></i>
+					<input name="proof_address" class="mdl-textfield__input" type="text" id="register-proof-address" value="">
+					<label class="mdl-textfield__label" for="register-proof-address">proof of address <em> *</em></label>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-phone"></i>
+					<input name="phone" class="mdl-textfield__input" type="text" id="register-phone" value="{{ user.phone }}">
+					<label class="mdl-textfield__label" for="register-phone">Phone number <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid Phone number!</span>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-birthday-cake"></i>
+					<input name="birthday" class="mdl-textfield__input" type="date" id="register-birthday" value="{{ user.birthday }}">
+					<label class="mdl-textfield__label" for="register-birthday">Date of birth <em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid date of birth!</span>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-certificate"></i>
+					<input name="country" class="mdl-textfield__input" type="text" id="register-country" value="{{ user.country }}">
+					<label class="mdl-textfield__label" for="register-country">country of residence<em> *</em></label>
+					<span class="mdl-textfield__error">Please Enter Valid country of residence!</span>
+				</div>
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+					<i class="fa fa-hand-paper-o"></i>
+					<input name="phone" class="mdl-textfield__input" type="text" id="register-citizenship" value="{{ user.citizenship }}">
+					<label class="mdl-textfield__label" for="register-citizenship">country/ies of citizenship (comma separated)<em> *</em></label>
+				</div>
+
+				<div class="form-submit">
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Update Profile</button>
+				</div>
+
+			</div>
+		</div>
+	</div><!-- End Login Section -->
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

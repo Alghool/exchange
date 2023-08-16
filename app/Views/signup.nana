@@ -14,7 +14,7 @@
 {% block content %}
 
 	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Sign Up'}) }}
-
+	{{ include('widgets/msgs.nana') }}
 
 	<!-- Start Register Section -->
 	<div class="layer-stretch">

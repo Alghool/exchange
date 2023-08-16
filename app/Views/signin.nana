@@ -14,27 +14,30 @@
 {% block content %}
 
 	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Sign In'}) }}
+	{{ include('widgets/msgs.nana') }}
 
 	<!-- Start Login Section -->
 	<div id="login-page" class="layer-stretch">
 		<div class="layer-wrapper">
 			<div class="form-container">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-					<i class="fa fa-envelope-o"></i>
-					<input class="mdl-textfield__input" type="text" id="login-email">
-					<label class="mdl-textfield__label" for="login-email">Email <em> *</em></label>
-					<span class="mdl-textfield__error">Please Enter Valid Email!</span>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-					<i class="fa fa-key"></i>
-					<input class="mdl-textfield__input" type="password" id="login-password">
-					<label class="mdl-textfield__label" for="login-password">Password <em> *</em></label>
-					<span class="mdl-textfield__error">Please Enter Valid Password!</span>
-					<div class="forgot-pass">Forgot Password?</div>
-				</div>
-				<div class="form-submit">
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Login Now</button>
-				</div>
+				<form id="signup_form" action="/user/signin" method="post">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-envelope-o"></i>
+						<input name="email" class="mdl-textfield__input" type="text" id="login-email">
+						<label class="mdl-textfield__label" for="login-email">Email <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Email!</span>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-key"></i>
+						<input name="password" class="mdl-textfield__input" type="password" id="login-password">
+						<label class="mdl-textfield__label" for="login-password">Password <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Password!</span>
+						<div class="forgot-pass">Forgot Password?</div>
+					</div>
+					<div class="form-submit">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Login Now</button>
+					</div>
+				</form>
 				<div class="login-link">
 					<span class="paragraph-small">Don't have an account?</span>
 					<a href="/user/signup" class="">Register as New User</a>
