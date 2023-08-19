@@ -41,9 +41,10 @@ abstract class BaseController extends Controller
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
-    // protected $session;
+    protected $session = null;
 
 	protected $twig = null;
+
 
     /**
      * @return void
@@ -56,9 +57,30 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         // E.g.: $this->session = \Config\Services::session();
 	    //todo:check for user logged in ant type
+	    $this->session = \Config\Services::session();
 	    $this->twig = new \Daycry\Twig\Twig();
-	    $this->twig->addGlobal('navbar', 'logout');
+
+	    $user = $this->session->get('user');
+	    if($user)  $this->twig->addGlobal('user', $user);
+		$this->getCorrectNavbar($user);
+
     }
 
+    protected function getCorrectNavbar($user){
+	    if ($user){
+		    if ($user['type'] == 'lister'){
+			    $this->twig->addGlobal('navbar', 'lister');
+		    }
+		    elseif ($user['type'] == 'investor'){
+			    $this->twig->addGlobal('navbar', 'investor');
+		    }
+		    elseif ($user['type'] == 'admin'){
+			    $this->twig->addGlobal('navbar', 'admin');
+		    }
+	    }
+	    else{
+		    $this->twig->addGlobal('navbar', 'logout');
+	    }
+    }
 
 }

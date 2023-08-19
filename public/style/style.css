@@ -3773,3 +3773,44 @@ blockquote {
       padding: 20px 0; } }
 
 /*# sourceMappingURL=style.css.map */
+
+
+  .file-wrap {
+    font-size: 16px;
+    text-align: left;
+    border-radius: 4px;
+    padding: 10px 30px;
+    margin: 0;
+  }
+
+  .custom-file {
+    width: auto;
+    cursor: pointer;
+  }
+  .custom-file-input {
+    height: 10px;
+  }
+  .custom-file-label {
+    display: block;
+    background: none;
+    border: 1px solid #eee;
+    line-height: 3.3125rem;
+    height: 3.3125rem;
+    border-right: none;
+    margin-bottom: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .custom-file-label::after {
+    height: 3.3125rem;
+    line-height: 3.3125rem;
+    padding: 0 0.875rem;
+    content: "Change file";
+    background-color: #7e52a6;
+    color: white;
+    float: right;
+  }

@@ -1,1 +1,32 @@
-<div>this is the lister navbar</div>
+{% extends "navbars/navbar_layout.nana" %}
+
+{% block mainmenu %}
+	<li>
+		<a id="menu-home" href="/" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
+	</li>
+	<li class="menu-megamenu-li">
+		<a id="menu-pages" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Companies</a>
+	</li>
+	<li>
+		<a id="menu-service" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Listings</a>
+	</li>
+	<li class="menu-megamenu-li">
+		<a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Offers</a>
+	</li>
+	<li class="">
+		<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment">Add Company</button></a>
+	</li>
+	<li class="mobile-menu-close"><i class="fa fa-times"></i></li>
+{% endblock %}
+
+{% block action_area %}
+	<div class="theme-dropdown">
+		<a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13"> {{ user.name }}  <i class="fa fa-chevron-down"></i></a>
+		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
+
+			<li class="mdl-menu__item"><a href="/user/profile"><i class="fa fa-user-o"></i>profile</a></li>
+
+			<li class="mdl-menu__item"><a href="/user/logout"><i class="fa fa-sign-out"></i>logout</a></li>
+		</ul>
+	</div>
+{% endblock %}

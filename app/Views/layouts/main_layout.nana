@@ -166,5 +166,6 @@
 	{% block JS %}{% endblock %}
 	<!--Custom JavaScript for Klinik Template-->
 	<script src="/js/custom.js"></script>
+
 </body>
 </html>
