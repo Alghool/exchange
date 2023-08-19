@@ -1,0 +1,107 @@
+{% extends "layouts/main_layout.nana" %}
+
+{% block style %}
+	<!-- Material Design Select Field Stylesheet CSS -->
+	<link rel="stylesheet" href="/style/mdl-selectfield.min.css">
+{% endblock %}
+
+{% block JS %}
+	<!-- Material Select Field Script -->
+	<script src="/js/mdl-selectfield.min.js"></script>
+
+	<script src="/js/file-upload.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'List your Investiment'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+
+	<!-- Start Login Section -->
+	<div id="add-company-page" class="layer-stretch">
+		<div class="layer-wrapper">
+			<div class="form-container">
+				<form id="add_company_form" action="/project/addcompany" method="post" enctype="multipart/form-data">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-tag"></i>
+						<input name="company" class="mdl-textfield__input" type="text" id="name" value="{{ company.company }}" required>
+						<label class="mdl-textfield__label" for="name">Company name <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid Name!</span>
+					</div>
+
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-cc-discover"></i>
+						<input name="country" class="mdl-textfield__input" type="text" id="country" required  value="{{ company.country }}">
+						<label class="mdl-textfield__label" for="country">Country of incorporation <em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter Valid country!</span>
+					</div>
+
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-calendar"></i>
+						<input name="date" class="mdl-textfield__input" type="date" id="register-date" required value="{{ company.date}}">
+						<label class="mdl-textfield__label" for="register-date">Date of incorporation<em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter date!</span>
+					</div>
+
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-caret-left"></i>
+						<input name="total_value" class="mdl-textfield__input" type="number" id="register-value" required value="{{ company.total_value}}">
+						<label class="mdl-textfield__label" for="register-date">Total value<em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter valid value!</span>
+					</div>
+
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-pie-chart"></i>
+						<input name="total_shares" class="mdl-textfield__input" type="number" id="register-shares" required value="{{ company.total_shares}}">
+						<label class="mdl-textfield__label" for="register-shares">Total shares<em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter valid share value!</span>
+					</div>
+
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
+						<i class="fa fa-pie-chart"></i>
+						<input name="listed_shares" class="mdl-textfield__input" type="number" id="register-listed" required value="{{ company.listed_shares}}">
+						<label class="mdl-textfield__label" for="register-listed">Listed shares<em> *</em></label>
+						<span class="mdl-textfield__error">Please Enter valid share value!</span>
+					</div>
+
+					<div class="file-wrap">
+						<label>audited financial statements<em> *</em></label>
+						<div class="custom-file">
+							{% if company.financial %} <a href="/attachment/{{ company.financial }}" target="_blank"> Current File</a> {% endif %}
+							<input name="financial" class="custom-file-input" id="financial" type="file" required/>
+							<label class="custom-file-label " for="financial">Add file</label>
+						</div>
+					</div>
+
+					<div class="file-wrap">
+						<label>Corp docs<em> *</em></label>
+						<div class="custom-file">
+							{% if company.docs %} <a href="/attachment/{{ company.docs }}" target="_blank"> Current File</a> {% endif %}
+							<input name="docs" class="custom-file-input" id="docs" type="file" required/>
+							<label class="custom-file-label " for="docs">Add file</label>
+						</div>
+					</div>
+
+					<div class="file-wrap">
+						<label>certificate of share ownership<em> *</em></label>
+
+						<div class="custom-file">
+							{% if company.certificate %} <a href="/attachment/{{ company.certificate }}" target="_blank"> Current File</a>{% endif %}
+							<input name="certificate" class="custom-file-input" id="certificate" type="file" required />
+							<label class="custom-file-label " for="certificate">Add file</label>
+						</div>
+					</div>
+
+					<div class="form-submit">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Submit for validation</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div><!-- End Login Section -->
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

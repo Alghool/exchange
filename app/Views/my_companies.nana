@@ -1,0 +1,79 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'My Companies'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center "> your added companies</h1>
+			</div>
+			<div class="col-12">
+				<div class="p-2 text-center">
+					<a href="/project/MyCompanies">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-bordered-primary button-transparent button-hover-primary m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							All<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+					<a href="/project/MyCompanies?filter=validating">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-bordered-danger button-transparent button-hover-danger m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							Validating<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+					<a href="/project/MyCompanies?filter=listed">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-bordered-info button-transparent button-hover-info m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							listed<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+					<a href="/project/MyCompanies?filter=completed">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-bordered-success button-transparent button-hover-success m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							Completed<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			{% for company in companies  %}
+
+				<div class="col-sm-12 ">
+					<div class="theme-material-card">
+						<div class="sub-ttl">
+							<h3 class="text-left">{{ company.company }}</h3>
+							<p class="text-left color-blue">{{ company.date }}</p>
+							<span class="ticket ticket-top-left badge badge-{% if company.status == 'validating' %}danger{% elseif company.status == 'listed' %}info{% elseif company.status == 'completed' %}success{% endif %}">{{ company.status }}</span>
+						</div>
+						<div class="flex-list company-data">
+								<span class="has-tooltip"><span class="tooltiptext colored-background">company location</span> <i class="fa fa-location-arrow"></i>{{ company.country }}</span>
+								<span class="has-tooltip"><span class="tooltiptext colored-background">company value</span> <i class="fa fa-money"></i>{{ company.total_value }}</span>
+								<span class="has-tooltip"><span class="tooltiptext colored-background">company total shares</span> <i class="fa fa-bar-chart"></i>{{ company.total_shares }}</span>
+								<span class="has-tooltip"><span class="tooltiptext colored-background">company listed shares</span> <i class="fa fa-pie-chart"></i>{{ company.listed_shares }}</span>
+								<span class="has-tooltip"><span class="tooltiptext colored-background">company rate</span> <i class="fa fa-star-half-empty"></i>{{ company.rate }}</span>
+						</div>
+						{% if company.status == 'validating' %}
+							<div class="progress mt-4 company-card-progress ">
+								<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{ company.progress }}%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+
+			{% else %}
+				<div class="col-sm-12 text-center mb-5">
+					<h3>you did not list any company yet</h3>
+					<a href="/project/addCompany">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary button-bordered-primary button-hover-transparent m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							List your first company now<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

@@ -45,7 +45,6 @@
 
 					<div class="file-wrap">
 						<label>Proof of ID  <em> *</em></label>
-
 						<div class="custom-file">
 							{% if user.proof_id %} <a href="/attachment/{{ user.proof_id }}" target="_blank"> Current File</a> {% endif %}
 							<input name="proof_id" class="custom-file-input" id="proof-ID" type="file" />
@@ -63,8 +62,6 @@
 
 					<div class="file-wrap">
 						<label>Proof of Address<em> *</em></label>
-
-
 						<div class="custom-file">
 							{% if user.proof_address %} <a href="/attachment/{{ user.proof_address }}" target="_blank"> Current File</a>{% endif %}
 							<input name="proof_address" class="custom-file-input" id="proof-address" type="file"  />

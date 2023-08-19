@@ -5,7 +5,7 @@
 		<a id="menu-home" href="/" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
 	</li>
 	<li class="menu-megamenu-li">
-		<a id="menu-pages" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Companies</a>
+		<a id="menu-pages"   href="/project/myCompanies"  class="mdl-button mdl-js-button mdl-js-ripple-effect">My Companies</a>
 	</li>
 	<li>
 		<a id="menu-service" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Listings</a>
@@ -14,7 +14,7 @@
 		<a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Offers</a>
 	</li>
 	<li class="">
-		<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment">Add Company</button></a>
+		<a href="/project/addcompany"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment">Add Company</button></a>
 	</li>
 	<li class="mobile-menu-close"><i class="fa fa-times"></i></li>
 {% endblock %}

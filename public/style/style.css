@@ -3814,3 +3814,63 @@ blockquote {
     color: white;
     float: right;
   }
+
+ .ticket{
+   position: absolute;
+ }
+
+  .ticket-top-left{
+    top: 0px;
+    right: 10px;
+  }
+
+.flex-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.company-data span {
+  width: 100%;
+  text-align: center;
+  border-right: 1px solid gray;
+}
+
+.company-data .fa {
+  padding: 10px;
+}
+
+.company-data span:last-child {
+  width: 100%;
+  text-align: center;
+  border-right: none;
+}
+
+.theme-material-card .company-card-progress{
+  margin: 45px -15px -15px -15px;
+  border-radius: 0;
+}
+
+/* Tooltip container */
+.has-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.has-tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: -40px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.has-tooltip:hover .tooltiptext {
+  visibility: visible;
+}

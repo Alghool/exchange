@@ -83,6 +83,9 @@ class User extends BaseController
 
 			if($user['profile_complete']){
 				//redirect to the correct page
+				if($user['type'] == 'lister'){
+					return redirect()->to('project/addCompany');
+				}
 			}
 			else{
 				$msg[] = ["type" => 'info', 'text' => 'please complete your profile'];
