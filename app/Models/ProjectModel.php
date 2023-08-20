@@ -16,4 +16,8 @@ class ProjectModel extends Model
 
 	protected $allowedFields = ['company', 'country', 'date', 'total_value', 'total_shares', 'listed_shares', 'status', 'listdate', 'lister', 'financial', 'docs', 'certificate', 'progress', 'rate'];
 
+	public function withLister(){
+		$this->builder()->join('users', 'projects.lister = users.user_id', 'left');
+		return $this;
+	}
 }

@@ -102,4 +102,28 @@ class Project extends BaseController
 
 		$this->twig->display( 'my_companies', ["companies" => $companies] );
 	}
+
+	public function getAdminCompanies(){
+		$filter = $this->request->getVar('filter');
+
+		$companies = $this->projectModel->withLister();
+		if($filter){
+			$companies->where('status', $filter);
+		}
+		$companies = $companies->findAll();
+
+		$this->twig->display( 'admin_companies', ["companies" => $companies] );
+	}
+
+	public function postSetProgress(){
+		$this->projectModel->update($this->request->getVar('company'), ["progress" =>  $this->request->getVar('progress')]);
+		return redirect()->to('project/adminCompanies');
+	}
+
+	public function getValidate($company){
+
+		$this->projectModel->update($company, ["status" =>  "listed"]);
+		return redirect()->to('project/adminCompanies');
+	}
+
 }

@@ -86,6 +86,9 @@ class User extends BaseController
 				if($user['type'] == 'lister'){
 					return redirect()->to('project/addCompany');
 				}
+				if($user['type'] == 'admin'){
+					return redirect()->to('project/adminCompanies');
+				}
 			}
 			else{
 				$msg[] = ["type" => 'info', 'text' => 'please complete your profile'];
@@ -155,6 +158,23 @@ class User extends BaseController
 		$this->session->remove('user');
 		$this->getCorrectNavbar([]);
 		$this->twig->display( 'home' );
+	}
+
+	public function getAdminUsers(){
+		$offset = $this->request->getVar('offset')|0;
+		$limit = 15;
+		$users = $this->userModel->findAll($limit, $offset*$limit);
+		$usersCount = $this->userModel->countAll();
+		$pages =$usersCount / $limit;
+		$pages = (int)$pages == $pages? (int)$pages - 1 : (int)$pages ;
+		$data = ["users" => $users,
+				"pagination" => [
+					'offset' => $offset,
+					'total' =>$usersCount,
+					'pages' => $pages
+					]
+				];
+		$this->twig->display( 'admin_users', $data );
 	}
 }
 

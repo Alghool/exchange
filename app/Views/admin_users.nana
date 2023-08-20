@@ -1,0 +1,67 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Users'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center "> all users</h1>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 ">
+				<table class="table">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Sys ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Type</th>
+						<th>Phone</th>
+						<th>Country</th>
+						<th>Citizenship</th>
+						<th>Credit</th>
+					</tr>
+					</thead>
+					<tbody>
+
+						{% for user in users  %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{ user.user_id }}</td>
+								<td>{{ user.name }}</td>
+								<td>{{ user.email }}</td>
+								{# todo:add filter for auto map the badge color #}
+								<td><span class="badge badge-{% if user.type == 'admin' %}danger{% elseif user.type == 'lister' %}info{% elseif user.type == 'investor' %}success{% endif %} ">{{ user.type }}</span></td>
+								<td>{{ user.phone }}</td>
+								<td>{{ user.country }}</td>
+								<td>{{ user.citizenship }}</td>
+								<td>{{ user.credit }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-12 mb-5">
+				<ul class="theme-pagination text-center theme-pagination-1 m-2">
+					{% for page in 0..pagination.pages %}
+						<li><a {% if page == pagination.offset %} href="#" class="active" {% else %} href="?offset={{ page }}"  {% endif %}>{{ page + 1 }}</a></li>
+					{% endfor %}
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

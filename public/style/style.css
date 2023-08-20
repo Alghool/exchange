@@ -3835,6 +3835,16 @@ blockquote {
   border-right: 1px solid gray;
 }
 
+.company-admin-control{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input-tiny{
+  width: 150px;
+  margin-left: 30px;
+}
+
 .company-data .fa {
   padding: 10px;
 }

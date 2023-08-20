@@ -1,0 +1,74 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Companies'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center "> all added companies</h1>
+			</div>
+			<div class="col-12">
+				{{ include('widgets/company_filter.nana') }}
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			{% for company in companies  %}
+
+				<div class="col-sm-12 ">
+					{{ include('widgets/company_panel.nana', {company: company}) }}
+					<div class="d-flex company-admin-control mb-5">
+						<div>
+							<h4><span class="color-blue">Owner: </span>{{ company.name }}</h4>
+							<h5>{{ company.email }}</h5>
+						</div>
+						<div>
+							<h4>documents: </h4>
+							<a href="/attachment/{{ company.financial }}" target="_blank"> financial </a>
+							<span>&nbsp;.&nbsp;</span>
+							<a href="/attachment/{{ company.docs }}" target="_blank"> docs  </a>
+							<span>&nbsp;.&nbsp;</span>
+							<a href="/attachment/{{ company.certificate }}" target="_blank"> certificate </a>
+						</div>
+						{% if company.status == "validating" %}
+							<div class="d-flex company-admin-control">
+								<a href="/project/validate/{{ company.project_id }}">
+									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-danger button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
+										Validate <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+								</a>
+								<div class="">
+									<form id="signup_form" action="/project/setProgress" method="post" >
+										<input type="hidden" name="company" value="{{ company.project_id }}">
+										<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
+											<input name="progress" class="mdl-textfield__input" type="number" min="0" max="100" id="progress" required value="{{ company.progress }}">
+											<label class="mdl-textfield__label" for="register-id">progress </label>
+										</div>
+										<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
+											set progress<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+									</form>
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+
+			{% else %}
+				<div class="col-sm-12 text-center mb-5">
+					<h3>you did not list any company yet</h3>
+					<a href="/project/addCompany">
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary button-bordered-primary button-hover-transparent m-1" data-upgraded=",MaterialButton,MaterialRipple">
+							List your first company now<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
