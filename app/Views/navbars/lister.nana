@@ -8,7 +8,7 @@
 		<a id="menu-pages"   href="/project/myCompanies"  class="mdl-button mdl-js-button mdl-js-ripple-effect">My Companies</a>
 	</li>
 	<li>
-		<a id="menu-service" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Listings</a>
+		<a id="menu-service" href="/share/myShares" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Listings</a>
 	</li>
 	<li class="menu-megamenu-li">
 		<a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Offers</a>

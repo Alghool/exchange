@@ -40,6 +40,7 @@ class Project extends BaseController
 			"total_value" => $this->request->getVar('total_value'),
 			"total_shares" => $this->request->getVar('total_shares'),
 			"listed_shares" => $this->request->getVar('listed_shares'),
+			"share_price" => $this->request->getVar('total_value') / $this->request->getVar('total_shares'),
 			"lister" => $user['user_id'],
 			"listdate" => new Time('now'),
 			"status" => "validating",
@@ -120,9 +121,19 @@ class Project extends BaseController
 		return redirect()->to('project/adminCompanies');
 	}
 
-	public function getValidate($company){
+	public function getValidate($companyID){
+		$company = $this->projectModel->find($companyID);
+		$this->projectModel->update($companyID, ["status" =>  "listed"]);
 
-		$this->projectModel->update($company, ["status" =>  "listed"]);
+		$this->shareModel = new \App\Models\ShareModel();
+		$this->shareModel->insert([
+			'value' => $company['share_price'] * $company['listed_shares'],
+			'amount' => $company['listed_shares'],
+			'owner' => $company['lister'],
+			'project' => $companyID,
+			'listed' => "no"
+		]);
+
 		return redirect()->to('project/adminCompanies');
 	}
 
