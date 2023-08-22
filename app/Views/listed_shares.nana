@@ -1,6 +1,22 @@
 {% extends "layouts/main_layout.nana" %}
 
 
+{% block JS %}
+<script >
+	$(document).ready(function() {
+		$('#amount').on('change',function(event){
+			let amount =  this.value;
+			let price = $(this).data('price');
+			let totalPrice = price * amount;
+
+			valueHolder = $(this).parent().parent().find('#price')[0];
+			valueHolder.value = parseFloat(totalPrice).toFixed( 2 );
+		});
+	});
+</script>
+
+{% endblock %}
+
 {% block content %}
 
 	{{ include('widgets/breadcrumb.nana', {pageTitle: 'listed Investment'}) }}
@@ -30,7 +46,23 @@
 									buy all shares <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
 							</a>
 						</div>
-						
+						<div class="d-flex company-admin-control">
+							<div class="">
+								<form id="signup_form" action="/share/buyShares" method="post" >
+									<input type="hidden" name="share" value="{{ share.share_id }}">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
+										<input name="amount" class="mdl-textfield__input" type="number" min="0" max="{{ share.amount }}" id="amount" data-price="{{ share.value / share.amount }}" required value="{{ share.amount }}">
+										<label class="mdl-textfield__label" for="amount">amount to buy</label>
+									</div>
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
+										<input name="price" class="mdl-textfield__input" type="number" min="1" id="price" disabled value="{{ share.value }}">
+										<label class="mdl-textfield__label" for="register-id">price </label>
+									</div>
+									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
+										buy<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+								</form>
+							</div>
+						</div>
 					</div>
 
 				</div>

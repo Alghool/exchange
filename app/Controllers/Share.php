@@ -111,20 +111,68 @@ class Share extends BaseController
 	public function getBuyAllShares($shareID){
 		$user = $this->session->get('user');
 		$share = $this->shareModel->find($shareID);
-		if( $share['value'] > $user['credit'] ){
-			$msg[] = ["type" => 'danger', 'text' => 'you do not have enough credit to complete this transaction'];
-			$this->twig->addGlobal('msgs', $msg);
+
+		if ( $this->buyShare($share['value'], $share, $user)){
+			$this->shareModel->update($shareID, [
+				'owner' => $user['user_id'],
+				'listed' => "no"
+			]);
+			return redirect()->to('share/listedshares');
+		}
+		else{
 			return $this->getListedShares();
 		}
 
-		$newCredit = $user['credit'] - $share['value'];
+	}
+
+	public function postBuyShares(){
+		$user = $this->session->get('user');
+		$shareID = $this->request->getVar('share');
+		$amount = $this->request->getVar('amount');
+
+		$share = $this->shareModel->find($shareID);
+		$newShareValue = $share['value'] / $share['amount'];
+		$value = $newShareValue * $amount;
+
+		if ( $this->buyShare($value, $share, $user)){
+			$newAmount = $share['amount'] - $amount;
+			$this->shareModel->update($shareID, [
+				"amount" => $newAmount,
+				"value" => $newAmount * $newShareValue
+			]);
+			$this->shareModel->insert([
+				'value' => $value,
+				'amount' => $amount,
+				'owner' => $user['user_id'],
+				'project' => $share['project'],
+				'listed' => "no"
+			]);
+			return redirect()->to('share/listedshares');
+		}
+		else{
+			return $this->getListedShares();
+		}
+
+
+	}
+
+	private function buyShare($purchaseValue, $share, $user){
+
+		if( $purchaseValue > $user['credit'] ){
+			$msg[] = ["type" => 'danger', 'text' => 'you do not have enough credit to complete this transaction'];
+			$this->twig->addGlobal('msgs', $msg);
+			return false;
+		}
+
+		//update user credit
+		$newCredit = $user['credit'] - $purchaseValue;
 		$userModel = new UserModel();
 		$userModel->update($user['user_id'], ['credit' => $newCredit]);
 		$this->session->set('user', $user);
 
+		//update project value
 		$projectModel  = new ProjectModel();
 		$project = $projectModel->find($share['project']);
-
 		$newShareValue = $share['value'] / $share['amount'];
 		if($newShareValue != $project['share_price']){
 			$projectUpdate = [
@@ -136,19 +184,8 @@ class Share extends BaseController
 			$this->shareModel->builder()->where('project', $share['project'])->where('listed', 'no')->set('value', "amount * {$newShareValue}", false)->update();
 		}
 
-		$userModel->builder()->where('user_id', $share['owner'])->set('credit', "credit + {$share['value']}", false)->update();
-		$this->shareModel->update($shareID, [
-			'owner' => $user['user_id'],
-			'listed' => "no"
-		]);
-
-		return redirect()->to('share/listedshares');
+		//update owner credit
+		$userModel->builder()->where('user_id', $share['owner'])->set('credit', "credit + {$purchaseValue}", false)->update();
+		return true;
 	}
-
-//	public function getTest(){
-//		$newShareValue = "1111.11";
-//		$koko = $this->shareModel->builder()->where('share_id', 5)->set('value', "amount * {$newShareValue}", false)->update();
-//
-//		dd($koko);
-//	}
 }
