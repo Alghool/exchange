@@ -86,8 +86,11 @@ class User extends BaseController
 				if($user['type'] == 'lister'){
 					return redirect()->to('project/addCompany');
 				}
-				if($user['type'] == 'admin'){
+				else if($user['type'] == 'admin'){
 					return redirect()->to('project/adminCompanies');
+				}
+				else if($user['type'] == 'investor'){
+					return redirect()->to('share/listedShares');
 				}
 			}
 			else{
@@ -101,9 +104,6 @@ class User extends BaseController
 			$this->twig->addGlobal('msgs', $msg);
 			$this->twig->display( 'signin', ["email" => $email] );
 		}
-
-
-
 	}
 
 	public function getProfile(){
@@ -121,7 +121,8 @@ class User extends BaseController
 			"phone" => $this->request->getVar('phone'),
 			"birthday" => $this->request->getVar('birthday'),
 			"country" => $this->request->getVar('country'),
-			"citizenship" => $this->request->getVar('citizenship')
+			"citizenship" => $this->request->getVar('citizenship'),
+			"profile_complete" => 1
 		];
 
 		$proofOfID = $this->request->getFile('proof_id');
@@ -139,9 +140,6 @@ class User extends BaseController
 			if($user['proof_address']) @unlink(WRITEPATH .'uploads/'.$user['proof_address']);
 		}
 
-		if($proofOfAddress->isValid() && $proofOfID->isValid() ){
-			$profile["profile_complete"] = 1;
-		}
 
 
 		$this->userModel->update($user['user_id'], $profile);
@@ -176,5 +174,6 @@ class User extends BaseController
 				];
 		$this->twig->display( 'admin_users', $data );
 	}
+
 }
 

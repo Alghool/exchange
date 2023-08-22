@@ -23,7 +23,7 @@
 			{% for share in shares  %}
 
 				<div class="col-sm-12 ">
-					{{ include('widgets/share_panel.nana', {share: share}) }}
+					{{ include('widgets/share_panel.nana', {share: share, tag: "listed"}) }}
 					{% if share.listed == 'no' %}
 						<div class="d-flex company-admin-control mb-5">
 							<div>

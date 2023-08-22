@@ -5,13 +5,10 @@
 		<a id="menu-home" href="/" class="mdl-button mdl-js-button mdl-js-ripple-effect">Home</a>
 	</li>
 	<li class="menu-megamenu-li">
-		<a id="menu-pages"   href="/project/myCompanies"  class="mdl-button mdl-js-button mdl-js-ripple-effect">My Companies</a>
+		<a id="menu-pages"   href="/share/listedShares"  class="mdl-button mdl-js-button mdl-js-ripple-effect">listed investments</a>
 	</li>
 	<li>
-		<a id="menu-service" href="/share/myShares" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Listings</a>
-	</li>
-	<li class="menu-megamenu-li">
-		<a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Offers</a>
+		<a id="menu-service" href="/share/myShares" class="mdl-button mdl-js-button mdl-js-ripple-effect">My Portfolio</a>
 	</li>
 	<li class="">
 		<a href="/project/addcompany"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment">Add Company</button></a>
@@ -24,6 +21,10 @@
 		<a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13"> {{ user.name }}  <i class="fa fa-chevron-down"></i></a>
 		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
 
+			<li class="mdl-menu__item"><a href="/project/myCompanies"><i class="fa fa-building-o"></i>My Companies</a></li>
+
+			<li class="mdl-menu__item"><a href="/"><i class="fa fa-reorder"></i>Offers</a></li>
+			<li class="mdl_menu_separator"></li>
 			<li class="mdl-menu__item"><a href="/user/profile"><i class="fa fa-user-o"></i>profile</a></li>
 
 			<li class="mdl-menu__item"><a href="/user/logout"><i class="fa fa-sign-out"></i>logout</a></li>

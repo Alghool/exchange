@@ -3884,3 +3884,10 @@ blockquote {
 .has-tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+
+.mdl_menu_separator {
+  border-bottom: 1px solid #80808070;
+  padding: 0 !important;
+  margin: 5px;
+}

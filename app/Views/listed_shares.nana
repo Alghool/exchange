@@ -1,0 +1,50 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'listed Investment'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center "> all Listed shares</h1>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			{% for share in shares  %}
+
+				<div class="col-sm-12 ">
+					{{ include('widgets/share_panel.nana', {share: share, tag: "none"}) }}
+
+					<div class="d-flex company-admin-control mb-5">
+						<div>
+							<a href="/share/buyAllShares/{{ share.share_id }}">
+								<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-success button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
+									buy all shares <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+							</a>
+						</div>
+						
+					</div>
+
+				</div>
+
+			{% else %}
+				<div class="col-sm-12 text-center mb-5">
+					<h3>there are no listed investment yet</h3>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

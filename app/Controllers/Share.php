@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ProjectModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
@@ -96,4 +98,57 @@ class Share extends BaseController
 		return redirect()->to('share/myShares');
 	}
 
+	public function getListedShares(){
+		$user = $this->session->get('user');
+
+		$shares = $this->shareModel->where('listed', 'yes')->where("owner !=", $user['user_id'])-> withCompany();
+
+		$shares = $shares->findAll();
+
+		$this->twig->display( 'listed_shares', ["shares" => $shares] );
+	}
+
+	public function getBuyAllShares($shareID){
+		$user = $this->session->get('user');
+		$share = $this->shareModel->find($shareID);
+		if( $share['value'] > $user['credit'] ){
+			$msg[] = ["type" => 'danger', 'text' => 'you do not have enough credit to complete this transaction'];
+			$this->twig->addGlobal('msgs', $msg);
+			return $this->getListedShares();
+		}
+
+		$newCredit = $user['credit'] - $share['value'];
+		$userModel = new UserModel();
+		$userModel->update($user['user_id'], ['credit' => $newCredit]);
+		$this->session->set('user', $user);
+
+		$projectModel  = new ProjectModel();
+		$project = $projectModel->find($share['project']);
+
+		$newShareValue = $share['value'] / $share['amount'];
+		if($newShareValue != $project['share_price']){
+			$projectUpdate = [
+				'share_price'=>$newShareValue,
+				'total_value' => ($newShareValue * $project['total_shares'])
+			];
+
+			$projectModel->update($project['project_id'],$projectUpdate );
+			$this->shareModel->builder()->where('project', $share['project'])->where('listed', 'no')->set('value', "amount * {$newShareValue}", false)->update();
+		}
+
+		$userModel->builder()->where('user_id', $share['owner'])->set('credit', "credit + {$share['value']}", false)->update();
+		$this->shareModel->update($shareID, [
+			'owner' => $user['user_id'],
+			'listed' => "no"
+		]);
+
+		return redirect()->to('share/listedshares');
+	}
+
+//	public function getTest(){
+//		$newShareValue = "1111.11";
+//		$koko = $this->shareModel->builder()->where('share_id', 5)->set('value', "amount * {$newShareValue}", false)->update();
+//
+//		dd($koko);
+//	}
 }
