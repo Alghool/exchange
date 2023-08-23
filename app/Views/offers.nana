@@ -1,0 +1,53 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Offers'}) }}
+
+	{{ include('widgets/msgs.nana') }}
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center "> offers you have</h1>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			{% for offer in offers  %}
+
+				<div class="col-sm-12 ">
+					{{ include('widgets/offer_panel.nana', {offer: offer}) }}
+
+					<div class="d-flex company-admin-control mb-5">
+						<div>
+							<a href="/share/removeOffer/{{ offer.offer_id }}">
+								<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-danger button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
+									remove offer <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+							</a>
+						</div>
+						<div>
+							<a href="/share/acceptOffer/{{ offer.offer_id }}">
+								<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-success button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
+									accept offer <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
+							</a>
+						</div>
+					</div>
+				</div>
+
+			{% else %}
+				<div class="col-sm-12 text-center mb-5">
+					<h3>you did not list any offers yet</h3>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

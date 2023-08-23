@@ -2,11 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\OfferModel;
 use App\Models\ProjectModel;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\I18n\TimeTrait;
+use CodeIgniter\Model;
 use Psr\Log\LoggerInterface;
 
 class Share extends BaseController
@@ -111,8 +114,9 @@ class Share extends BaseController
 	public function getBuyAllShares($shareID){
 		$user = $this->session->get('user');
 		$share = $this->shareModel->find($shareID);
+		$shareValue = $share['value'] / $share['amount'];
 
-		if ( $this->buyShare($share['value'], $share, $user)){
+		if ( $this->buyShare($share['value'], $share['project'], $shareValue, $share['owner'], $user)){
 			$this->shareModel->update($shareID, [
 				'owner' => $user['user_id'],
 				'listed' => "no"
@@ -134,12 +138,18 @@ class Share extends BaseController
 		$newShareValue = $share['value'] / $share['amount'];
 		$value = $newShareValue * $amount;
 
-		if ( $this->buyShare($value, $share, $user)){
+		if ( $this->buyShare($value, $share['project'], $newShareValue, $share['owner'], $user)){
 			$newAmount = $share['amount'] - $amount;
-			$this->shareModel->update($shareID, [
-				"amount" => $newAmount,
-				"value" => $newAmount * $newShareValue
-			]);
+			if( $newAmount == 0 ){
+				$this->shareModel->delete($shareID);
+			}
+			else{
+				$this->shareModel->update($shareID, [
+					"amount" => $newAmount,
+					"value" => $newAmount * $newShareValue
+				]);
+			}
+
 			$this->shareModel->insert([
 				'value' => $value,
 				'amount' => $amount,
@@ -154,40 +164,121 @@ class Share extends BaseController
 		}
 	}
 
-	public function postGetOffer(){
+	//private function buyShare($purchaseValue, $share, $user){
+	private function buyShare($purchaseValue, $projectID, $ShareValue ,$ownerID, $purchasingUser){
 
-	}
-
-	private function buyShare($purchaseValue, $share, $user){
-
-		if( $purchaseValue > $user['credit'] ){
+		if( $purchaseValue > $purchasingUser['credit'] ){
 			$msg[] = ["type" => 'danger', 'text' => 'you do not have enough credit to complete this transaction'];
 			$this->twig->addGlobal('msgs', $msg);
 			return false;
 		}
 
 		//update user credit
-		$newCredit = $user['credit'] - $purchaseValue;
+		$newCredit = $purchasingUser['credit'] - $purchaseValue;
 		$userModel = new UserModel();
-		$userModel->update($user['user_id'], ['credit' => $newCredit]);
-		$this->session->set('user', $user);
+		$userModel->update($purchasingUser['user_id'], ['credit' => $newCredit]);
+		$this->session->set('user', $purchasingUser);
 
 		//update project value
 		$projectModel  = new ProjectModel();
-		$project = $projectModel->find($share['project']);
-		$newShareValue = $share['value'] / $share['amount'];
-		if($newShareValue != $project['share_price']){
+		$project = $projectModel->find($projectID);
+
+		if($ShareValue != $project['share_price']){
 			$projectUpdate = [
-				'share_price'=>$newShareValue,
-				'total_value' => ($newShareValue * $project['total_shares'])
+				'share_price'=>$ShareValue,
+				'total_value' => ($ShareValue * $project['total_shares'])
 			];
 
 			$projectModel->update($project['project_id'],$projectUpdate );
-			$this->shareModel->builder()->where('project', $share['project'])->where('listed', 'no')->set('value', "amount * {$newShareValue}", false)->update();
+			$this->shareModel->builder()->where('project', $projectID)->where('listed', 'no')->set('value', "amount * {$ShareValue}", false)->update();
 		}
 
 		//update owner credit
-		$userModel->builder()->where('user_id', $share['owner'])->set('credit', "credit + {$purchaseValue}", false)->update();
+		$userModel->builder()->where('user_id', $ownerID)->set('credit', "credit + {$purchaseValue}", false)->update();
 		return true;
+	}
+
+
+	public function postSetOffer(){
+		$shareID = $this->request->getVar("share");
+		$user = $this->session->get("user");
+		$share = $this->shareModel->find($shareID);
+
+		$offerModel = new OfferModel();
+
+		$offerModel->insert([
+			"project" => $share['project'],
+			"share" => $shareID,
+			"original_owner" => $share['owner'],
+			"offer_user" => $user['user_id'],
+			"amount" => $this->request->getVar("amount"),
+			"value" => $this->request->getVar("price"),
+			"offer_date" => new Time('now')
+		]);
+
+		return redirect()->to('share/listedshares');
+	}
+
+	public function getMyOffers(){
+		$user = $this->session->get("user");
+		$offerModel = new OfferModel();
+
+		$offers = $offerModel->where("offer_user", $user['user_id'])->withCompany()->findAll();
+
+		$this->twig->display( 'my_offers', ["offers" => $offers] );
+	}
+
+	public function getRemoveOffer($offerID){
+		$offerModel = new OfferModel();
+		$offerModel->delete($offerID);
+		$this->getMyOffers();
+	}
+
+	public function getOffers(){
+		$user = $this->session->get("user");
+		$offerModel = new OfferModel();
+
+		$offers = $offerModel->where("original_owner", $user['user_id'])->withCompany()->findAll();
+
+		$this->twig->display( 'offers', ["offers" => $offers] );
+	}
+
+	public function getAcceptOffer($offerID){
+		$user = $this->session->get("user");
+
+		$offerModel = new OfferModel();
+		$userModel = new UserModel();
+		$offer = $offerModel->find($offerID);
+		$share = $this->shareModel->find($offer['share']);
+		$purchaseUSer = $userModel->find($offer['offer_user']);
+		$value = $offer['value'] / $offer['amount'];
+
+		if ( $this->buyShare($offer['value'], $offer['project'], $value, $offer['original_owner'], $purchaseUSer ) ){
+			$newAmount = $share['amount'] - $offer['amount'];
+			if($newAmount == 0){
+				$this->shareModel->delete($offer['share']);
+			}
+			else{
+				$this->shareModel->update($offer['share'], [
+					"amount" => $newAmount,
+					"value" => $newAmount * $value
+				]);
+			}
+
+			$this->shareModel->insert([
+				'value' => $offer['value'],
+				'amount' => $offer['amount'],
+				'owner' => $offer['offer_user'],
+				'project' => $offer['project'],
+				'listed' => "no"
+			]);
+			$offerModel->delete($offerID);
+			return redirect()->to('share/Offers');
+		}
+		else{
+			return $this->getOffers();
+		}
+
+
 	}
 }
