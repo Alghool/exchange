@@ -1,0 +1,34 @@
+{% extends "layouts/main_layout.nana" %}
+
+
+{% block content %}
+
+	{{ include('widgets/breadcrumb.nana', {pageTitle: 'Credit'}) }}
+	{{ include('widgets/msgs.nana') }}
+
+	<!-- Start Register Section -->
+	<div class="layer-stretch">
+		<div class="layer-wrapper">
+
+			<h2 class="text-center">your credit amount is <span class="color-blue">{{ user.credit }}$</span> </h2>
+
+		</div>
+	</div><!-- End Register Section -->
+	<!-- Start Register Section -->
+	<div class="layer-stretch">
+		<div class="layer-wrapper">
+
+			<h3 class="">your shares </h3>
+			{% set  totalShares = 0 %}
+			{% for share in shares %}
+				{{ include('widgets/share_panel.nana', {share: share, tag: "value"}) }}
+				{% set totalShares = totalShares + share.value %}
+			{% endfor %}
+			<h2 class="text-right"> total shares value <span class="color-blue"> {{ totalShares }}$</span> </h2>
+		</div>
+	</div><!-- End Register Section -->
+
+
+	{{ include('widgets/emergancy.nana') }}
+
+{% endblock %}

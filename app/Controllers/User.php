@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ShareModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -175,5 +176,15 @@ class User extends BaseController
 		$this->twig->display( 'admin_users', $data );
 	}
 
+	public function getCredit(){
+		$user = $this->session->get("user");
+
+		$shareModel = new ShareModel();
+
+		$shares = $shareModel->where('owner', $user['user_id'])->withCompany()->findAll();
+
+		$this->twig->display( 'user_credit' ,['shares' => $shares]);
+
+	}
 }
 

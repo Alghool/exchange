@@ -152,7 +152,9 @@ class Share extends BaseController
 		else{
 			return $this->getListedShares();
 		}
+	}
 
+	public function postGetOffer(){
 
 	}
 

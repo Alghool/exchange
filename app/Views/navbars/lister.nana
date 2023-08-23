@@ -24,7 +24,11 @@
 			<li class="mdl-menu__item"><a href="/project/myCompanies"><i class="fa fa-building-o"></i>My Companies</a></li>
 
 			<li class="mdl-menu__item"><a href="/"><i class="fa fa-reorder"></i>Offers</a></li>
+
 			<li class="mdl_menu_separator"></li>
+
+			<li class="mdl-menu__item"><a href="/user/credit"><i class="fa fa-money"></i>your credit: {{ user.credit }}</a></li>
+
 			<li class="mdl-menu__item"><a href="/user/profile"><i class="fa fa-user-o"></i>profile</a></li>
 
 			<li class="mdl-menu__item"><a href="/user/logout"><i class="fa fa-sign-out"></i>logout</a></li>
