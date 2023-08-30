@@ -1,5 +1,13 @@
+
 <!-- Start Header -->
 <header id="header">
+	<!-- Start Header Top Section -->
+	<div id="hdr-top-wrapper">
+		<div class="layer-stretch hdr-top">
+			{% block action_area %}{% endblock %}
+
+		</div>
+	</div><!-- End Header Top Section -->
 	<!-- Start Main Header Section -->
 	<div id="hdr-wrapper">
 		<div class="layer-stretch hdr">
@@ -13,17 +21,12 @@
 						<!-- Start Menu Section -->
 						<ul class="menu">
 							{% block mainmenu %}{% endblock %}
+							<li class="mobile-menu-close"><i class="fa fa-times"></i></li>
 						</ul><!-- End Menu Section -->
-
 						<div id="menu-bar"><a><i class="fa fa-bars"></i></a></div>
-					</div>
-					<div class="tbl-cell " style="text-align: right">
-						{% block action_area %}{% endblock %}
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div><!-- End Main Header Section -->
 </header><!-- End Header -->
-

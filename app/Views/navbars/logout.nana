@@ -19,7 +19,16 @@
 
 {% block action_area %}
 
-	<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button></a>
-	<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment"> sign up</button></a>
+	<div class="hdr-top-block">
+		<div class="d-block">
+			<div class="theme-dropdown">
+				<a href="/user/signin" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13 font-400 pr-2 pl-2" data-upgraded=",MaterialButton,MaterialRipple"><i class="fa fa-sign-in font-14"></i> Sign in <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 152.909px; height: 152.909px; transform: translate(-50%, -50%) translate(41px, 11px);"></span></span></a>
+			</div>
+			<div class="hdr-top-line"></div>
+			<div class="theme-dropdown">
+				<a href="/user/signup" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13 font-400 pr-2 pl-2" data-upgraded=",MaterialButton,MaterialRipple"><i class="fa fa-user-plus font-14"></i> Sign up <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
