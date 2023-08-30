@@ -6,9 +6,9 @@
 	</div>
 	<div class="flex-list company-data">
 		<span class="has-tooltip"><span class="tooltiptext colored-background">company location</span> <i class="fa fa-location-arrow"></i>{{ company.country }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">company value</span> <i class="fa fa-money"></i>{{ company.total_value }}</span>
 		<span class="has-tooltip"><span class="tooltiptext colored-background">company total shares</span> <i class="fa fa-bar-chart"></i>{{ company.total_shares }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">company listed shares</span> <i class="fa fa-pie-chart"></i>{{ company.listed_shares }}</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">company  value</span> <i class="fa fa-money"></i>{{ company.total_value }}</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">company tradable shares</span> <i class="fa fa-pie-chart"></i>{{ company.listed_shares }}</span>
 		<span class="has-tooltip"><span class="tooltiptext colored-background">company rate</span> <i class="fa fa-star-half-empty"></i>{{ company.rate }}</span>
 	</div>
 	{% if company.status == 'validating' %}

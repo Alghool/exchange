@@ -3891,3 +3891,7 @@ blockquote {
   padding: 0 !important;
   margin: 5px;
 }
+
+.badge{
+  border-radius: 50px !important;
+}

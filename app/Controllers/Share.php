@@ -52,7 +52,7 @@ class Share extends BaseController
 		$shareID = $this->request->getVar('share');
 		$oldShare = $this->shareModel->withCompany()->find($shareID);
 		$newShare = [
-			'value' => $this->request->getVar('price'),
+			'value' => $this->request->getVar('price') * $this->request->getVar('amount'),
 			'amount' => $this->request->getVar('amount'),
 			'owner' => $user['user_id'],
 			'project' => $oldShare['project'],
@@ -121,7 +121,7 @@ class Share extends BaseController
 				'owner' => $user['user_id'],
 				'listed' => "no"
 			]);
-			return redirect()->to('share/listedshares');
+			return redirect()->to('share/myShares');
 		}
 		else{
 			return $this->getListedShares();
@@ -157,7 +157,7 @@ class Share extends BaseController
 				'project' => $share['project'],
 				'listed' => "no"
 			]);
-			return redirect()->to('share/listedshares');
+			return redirect()->to('share/myShares');
 		}
 		else{
 			return $this->getListedShares();
@@ -212,11 +212,11 @@ class Share extends BaseController
 			"original_owner" => $share['owner'],
 			"offer_user" => $user['user_id'],
 			"amount" => $this->request->getVar("amount"),
-			"value" => $this->request->getVar("price"),
+			"value" => $this->request->getVar("price") * $this->request->getVar("amount"),
 			"offer_date" => new Time('now')
 		]);
 
-		return redirect()->to('share/listedshares');
+		return redirect()->to('share/myOffers');
 	}
 
 	public function getMyOffers(){

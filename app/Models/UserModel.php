@@ -14,6 +14,16 @@ class UserModel extends Model
 	protected $returnType     = 'array';
 	protected $useSoftDeletes = false;
 
+	protected $validationRules = [
+		'email'        => 'max_length[254]|valid_email|is_unique[users.email]',
+	];
+
+	protected $validationMessages = [
+		'email' => [
+			'is_unique' => 'Sorry. That email has already been taken. Please choose another.',
+		],
+	];
+
 	protected $allowedFields = ['name', 'email', 'password', 'type', 'id', 'address', 'phone', 'birthday', 'country', 'country', 'citizenship', 'proof_id', 'proof_address', 'credit', 'profile_complete'];
 
 //	// Dates

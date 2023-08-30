@@ -18,6 +18,8 @@
 {% endblock %}
 
 {% block action_area %}
+
 	<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button></a>
 	<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect hdr-apointment"> sign up</button></a>
+
 {% endblock %}

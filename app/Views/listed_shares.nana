@@ -52,11 +52,11 @@
 									<input type="hidden" name="share" value="{{ share.share_id }}">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
 										<input name="amount" class="mdl-textfield__input" type="number" min="0" max="{{ share.amount }}" id="offer-amount" data-price="{{ share.value / share.amount }}" required value="{{ share.amount }}">
-										<label class="mdl-textfield__label" for="offer-amount">amount to offer</label>
+										<label class="mdl-textfield__label" for="offer-amount">number of shares</label>
 									</div>
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
-										<input name="price" class="mdl-textfield__input" type="number" min="1" id="offer-price" max="{{ user.credit }}" step="0.01" value="{{ share.value }}">
-										<label class="mdl-textfield__label" for="offer-price">offer price </label>
+										<input name="price" class="mdl-textfield__input" type="number" min="1" id="offer-price" max="{{ user.credit }}" step="0.01" value="{{ share.value / share.amount }}">
+										<label class="mdl-textfield__label" for="offer-price">share price </label>
 									</div>
 									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-info button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
 										offer<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
@@ -69,7 +69,7 @@
 									<input type="hidden" name="share" value="{{ share.share_id }}">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
 										<input name="amount" class="mdl-textfield__input" type="number" min="0" max="{{ share.amount }}" id="amount" data-price="{{ share.value / share.amount }}" required value="{{ share.amount }}">
-										<label class="mdl-textfield__label" for="amount">amount to buy</label>
+										<label class="mdl-textfield__label" for="amount">number of shares</label>
 									</div>
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-tiny d-inline-block">
 										<input name="price" class="mdl-textfield__input" type="number" min="1" max="{{ user.credit }}" id="price" step="0.01" disabled value="{{ share.value }}">

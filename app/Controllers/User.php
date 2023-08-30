@@ -35,6 +35,7 @@ class User extends BaseController
 	}
 
 	public function postsignup(){
+		$msg = [];
 		$name = $this->request->getVar('name');
 		$email = $this->request->getVar('email');
 		$password = $this->request->getVar('password');
@@ -46,10 +47,15 @@ class User extends BaseController
 			'type' => $type,
 			'credit' => 100
 		];
+		$register = $this->userModel->insert($data, false);
+		if(!$register){
+			$error = $this->userModel->errors()["email"];
+			$msg[] = ["type" => 'danger', 'text' => $error];
+			$this->twig->addGlobal('msgs', $msg);
+			return $this->twig->display( 'signup',["user" => $data] );
+		}
 
-		$this->userModel->insert($data, false);
 		//todo: add a global msgs handler
-		$msg = [];
 		$msg[] = ["type" => 'success', 'text' => 'successfully registered'];
 		$msg[] = ["type" => 'info', 'text' => 'please complete your profile'];
 		$this->twig->addGlobal('msgs', $msg);
@@ -85,7 +91,7 @@ class User extends BaseController
 			if($user['profile_complete']){
 				//redirect to the correct page
 				if($user['type'] == 'lister'){
-					return redirect()->to('project/addCompany');
+					return redirect()->to('share/listedShares');
 				}
 				else if($user['type'] == 'admin'){
 					return redirect()->to('project/adminCompanies');
