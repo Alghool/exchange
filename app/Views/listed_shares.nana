@@ -39,8 +39,8 @@
 				<div class="col-sm-12 ">
 					{{ include('widgets/share_panel.nana', {share: share, tag: "none"}) }}
 
-					<div class="d-flex company-admin-control mb-5">
-						<div>
+					<div class="d-flex company-admin-control mb-5 large-control">
+						<div class = "no-form-action">
 							<a href="/share/buyAllShares/{{ share.share_id }}">
 								<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-success button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
 									buy all shares <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
@@ -58,12 +58,12 @@
 										<input name="price" class="mdl-textfield__input" type="number" min="1" id="offer-price" max="{{ user.credit }}" step="0.01" value="{{ share.value / share.amount }}">
 										<label class="mdl-textfield__label" for="offer-price">share price </label>
 									</div>
-									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-info button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
+									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-info button-sm m-1 form-btn-tiny d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
 										offer<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
 								</form>
 							</div>
 						</div>
-						<div class="d-flex company-admin-control">
+						<div class="d-flex company-admin-control ">
 							<div class="">
 								<form id="buy_form" action="/share/buyShares" method="post" >
 									<input type="hidden" name="share" value="{{ share.share_id }}">
@@ -75,11 +75,12 @@
 										<input name="price" class="mdl-textfield__input" type="number" min="1" max="{{ user.credit }}" id="price" step="0.01" disabled value="{{ share.value }}">
 										<label class="mdl-textfield__label" for="register-id">price </label>
 									</div>
-									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
+									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  form-btn-tiny d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
 										buy<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
 								</form>
 							</div>
 						</div>
+
 					</div>
 
 				</div>

@@ -9,10 +9,25 @@
 		{% endif %}
 	</div>
 	<div class="flex-list company-data">
-		<span class="has-tooltip"><span class="tooltiptext colored-background">company total shares</span> <i class="fa fa-bar-chart"></i>{{ share.total_shares }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">company value</span> <i class="fa fa-money"></i>{{ share.total_value }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">tradable shares</span> <i class="fa fa-location-arrow"></i>{{ share.amount }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">tradable shares value</span> <i class="fa fa-pie-chart"></i>{{ share.value }}</span>
-		<span class="has-tooltip"><span class="tooltiptext colored-background">company rate</span> <i class="fa fa-star-half-empty"></i>{{ share.rate }}</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">company total shares</span>
+			<span class="meta-title primary-color">company total shares</span>
+			<i class="fa fa-bar-chart"></i>{{ share.total_shares }}
+		</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">company value</span>
+			<span class="meta-title primary-color">company value</span>
+			<i class="fa fa-money"></i>{{ share.total_value }}
+		</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">tradable shares</span>
+			<span class="meta-title primary-color">tradable shares</span>
+			<i class="fa fa-location-arrow"></i>{{ share.amount }}
+		</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">tradable shares value</span>
+			<span class="meta-title primary-color">tradable shares value</span>
+			<i class="fa fa-pie-chart"></i>{{ share.value }}
+		</span>
+		<span class="has-tooltip"><span class="tooltiptext colored-background">company rate</span>
+			<span class="meta-title primary-color">company rate</span>
+			<i class="fa fa-star-half-empty"></i>{{ share.rate }}
+		</span>
 	</div>
 </div>

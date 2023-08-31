@@ -44,7 +44,7 @@
 											<input name="price" class="mdl-textfield__input" type="number" min="1" id="price" required value="{{ share.value / share.amount }}">
 											<label class="mdl-textfield__label" for="register-id">share price </label>
 										</div>
-										<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
+										<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-primary button-sm m-1  form-btn-tiny d-inline-block" data-upgraded=",MaterialButton,MaterialRipple">
 											sell<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
 									</form>
 								</div>

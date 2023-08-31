@@ -3855,6 +3855,10 @@ blockquote {
   border-right: none;
 }
 
+span.meta-title {
+  display: none;
+}
+
 .theme-material-card .company-card-progress{
   margin: 45px -15px -15px -15px;
   border-radius: 0;
@@ -3894,4 +3898,42 @@ blockquote {
 
 .badge{
   border-radius: 50px !important;
+}
+
+.form-btn-tiny{
+  margin-left: 30px!important;
+}
+
+@media (max-width: 768px) {
+  .flex-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .company-data span {
+    width: 50%;
+    text-align: center;
+    border-right: 1px solid gray;
+  }
+  .company-data span:nth-child(even) {
+    border-right: none;
+  }
+  span.meta-title {
+    width: 100%;
+    display: block;
+    font-weight: 600;
+  }
+
+  .has-tooltip:hover .tooltiptext {
+    visibility: hidden;
+  }
+
+  .large-control{
+    flex-wrap: wrap-reverse;
+  }
+  .large-control .no-form-action{
+    width: 100%;
+    text-align: center;
+  }
 }
