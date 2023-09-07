@@ -58,7 +58,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
 	    //todo:check for user logged in ant type
 	    $this->session = \Config\Services::session();
-	    $this->twig = new \Daycry\Twig\Twig();
+	    $this->twig = new \Alghool\Twig\Twig();
 
 	    $user = $this->session->get('user');
 	    if($user)  $this->twig->addGlobal('user', $user);
