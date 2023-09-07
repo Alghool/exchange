@@ -70,7 +70,7 @@
 						<label>audited financial statements<em> *</em></label>
 						<div class="custom-file">
 							{% if company.financial %} <a href="/attachment/{{ company.financial }}" target="_blank"> Current File</a> {% endif %}
-							<input name="financial" class="custom-file-input" id="financial" type="file" required/>
+							<input name="financial" class="custom-file-input" id="financial" type="file" />
 							<label class="custom-file-label " for="financial">Add file</label>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 						<label>Corp docs<em> *</em></label>
 						<div class="custom-file">
 							{% if company.docs %} <a href="/attachment/{{ company.docs }}" target="_blank"> Current File</a> {% endif %}
-							<input name="docs" class="custom-file-input" id="docs" type="file" required/>
+							<input name="docs" class="custom-file-input" id="docs" type="file" />
 							<label class="custom-file-label " for="docs">Add file</label>
 						</div>
 					</div>
@@ -89,7 +89,7 @@
 
 						<div class="custom-file">
 							{% if company.certificate %} <a href="/attachment/{{ company.certificate }}" target="_blank"> Current File</a>{% endif %}
-							<input name="certificate" class="custom-file-input" id="certificate" type="file" required />
+							<input name="certificate" class="custom-file-input" id="certificate" type="file"  />
 							<label class="custom-file-label " for="certificate">Add file</label>
 						</div>
 					</div>

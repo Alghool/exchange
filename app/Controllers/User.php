@@ -40,6 +40,7 @@ class User extends BaseController
 		$email = $this->request->getVar('email');
 		$password = $this->request->getVar('password');
 		$type = $this->request->getVar('type');
+		$signature = $this->request->getVar('signature');
 		$data = [
 			'name' => $name,
 			'email' => $email,
@@ -47,6 +48,14 @@ class User extends BaseController
 			'type' => $type,
 			'credit' => 100
 		];
+
+		if(! ($name != "" && $name == $signature) ){
+			$msg = ["type" => 'danger', 'text' => "please fill your name and signup agreement to continue"];
+			$this->twig->addMsg($msg);
+			return $this->twig->display( 'signup',["user" => $data] );
+		}
+
+
 		$register = $this->userModel->insert($data, false);
 		if(!$register){
 			$error = $this->userModel->errors()["email"];

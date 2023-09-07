@@ -54,7 +54,7 @@ class Project extends BaseController
 			$company["financial"] = $financialPath;
 		}
 		else{
-			$error = true;
+//			$error = true;
 			$msgs[] = ["type" => 'danger', 'text' => 'error uploading financial file'];
 		}
 
@@ -65,7 +65,7 @@ class Project extends BaseController
 			$company["docs"] = $docsPath;
 		}
 		else{
-			$error = true;
+//			$error = true;
 			$msgs[] = ["type" => 'danger', 'text' => 'error uploading document file'];
 		}
 
@@ -75,7 +75,7 @@ class Project extends BaseController
 			$company["certificate"] = $certificatePath;
 		}
 		else{
-			$error = true;
+//			$error = true;
 			$msgs[] = ["type" => 'danger', 'text' => 'error uploading certificate file'];
 		}
 

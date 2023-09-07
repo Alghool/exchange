@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Alghool\Twig\Twig;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -43,7 +44,7 @@ abstract class BaseController extends Controller
      */
     protected $session = null;
 
-	protected $twig = null;
+	protected Twig|null $twig = null;
 
 
     /**
@@ -59,6 +60,15 @@ abstract class BaseController extends Controller
 	    //todo:check for user logged in ant type
 	    $this->session = \Config\Services::session();
 	    $this->twig = new \Alghool\Twig\Twig();
+	    $msgs = $this->session->getFlashdata('msgs');
+
+	    if ($msgs){
+	        foreach ($msgs as $msg){
+				 $this->twig->addMsg($msg);
+		    }
+	    }else{
+	    	$this->twig->addGlobal('msgs', []);
+	    }
 
 	    $user = $this->session->get('user');
 	    if($user)  $this->twig->addGlobal('user', $user);

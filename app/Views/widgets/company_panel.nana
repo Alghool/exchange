@@ -1,7 +1,10 @@
 <div class="theme-material-card">
+	<div class="panel-leftbar company">
+		COMPANY
+	</div>
 	<div class="sub-ttl">
 		<h3 class="text-left">{{ company.company }}</h3>
-		<p class="text-left color-blue">{{ company.date }}</p>
+		<p class="text-left color-blue">since {{ company.date }}. &nbsp listed at {{ company.listdate }}</p>
 		<span class="ticket ticket-top-left badge badge-{% if company.status == 'validating' %}danger{% elseif company.status == 'listed' %}info{% elseif company.status == 'completed' %}success{% endif %}">{{ company.status }}</span>
 	</div>
 	<div class="flex-list company-data">

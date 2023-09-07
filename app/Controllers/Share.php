@@ -204,19 +204,27 @@ class Share extends BaseController
 		$user = $this->session->get("user");
 		$share = $this->shareModel->find($shareID);
 
+		$price = $this->request->getVar("price");
+		$amount = $this->request->getVar("amount");
+		$purchaseValue = $price * $amount;
+
 		$offerModel = new OfferModel();
+
+		if( $purchaseValue > $user['credit'] ){
+			return redirect()->back()->with('msgs', [ ["type" => 'danger', 'text' => 'you do not have enough credit to add this offer']]);
+		}
 
 		$offerModel->insert([
 			"project" => $share['project'],
 			"share" => $shareID,
 			"original_owner" => $share['owner'],
 			"offer_user" => $user['user_id'],
-			"amount" => $this->request->getVar("amount"),
-			"value" => $this->request->getVar("price") * $this->request->getVar("amount"),
+			"amount" => $amount,
+			"value" => $purchaseValue,
 			"offer_date" => new Time('now')
 		]);
 
-		return redirect()->to('share/myOffers');
+		return redirect()->to('share/myOffers')->with('msgs', [["type" => 'success', 'text' => 'offer set successfully']]);
 	}
 
 	public function getMyOffers(){
@@ -273,7 +281,7 @@ class Share extends BaseController
 				'listed' => "no"
 			]);
 			$offerModel->delete($offerID);
-			return redirect()->to('share/Offers');
+			return redirect()->to('share/Offers')->with("msgs", [['type'=>'success', 'text'=> 'offer accepted successfully']]);
 		}
 		else{
 			return $this->getOffers();

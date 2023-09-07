@@ -1,7 +1,10 @@
 <div class="theme-material-card">
+	<div class="panel-leftbar shares">
+		SHARES
+	</div>
 	<div class="sub-ttl">
 		<h3 class="text-left">{{ share.company }}</h3>
-		<p class="text-left color-blue">{{ share.date }}</p>
+		<p class="text-left ">since <span class="color-blue">{{ share.date }}</span>. &nbsp listed at <span class="color-blue">{{ share.listdate }}</span></p>
 		{% if tag == "listed" %}
 			<span class="ticket ticket-top-left badge badge-{% if share.listed == 'yes' %}success{% elseif share.listed == 'no' %}info{% endif %}">{% if share.listed == 'yes' %}listed{% elseif share.listed == 'no' %}not listed{% endif %}</span>
 		{% elseif tag == "value" %}
