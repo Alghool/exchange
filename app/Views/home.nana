@@ -22,8 +22,8 @@
 						Your global marketplace to easily buy and sell validated pre-IPO high grade investments.
 					</p>
 					<div class="hm-service-view text-center">
-						<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment-nocolor button-transparent">sign in</button></a>
-						<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect hdr-apointment">sign up</button></a>
+						<a href="/user/signin"><button class=" button-transparent mdl-button mdl-button--colored mdl-button--raised  hdr-apointment-nocolor button-transparent">sign in</button></a>
+						<a href="/user/signup"><button class="mdl-button mdl-button--colored mdl-button--raised  hdr-apointment">sign up</button></a>
 					</div>
 				</div>
 				<div class="col-md-5">

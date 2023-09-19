@@ -92,7 +92,7 @@
 
 
 					<div class="form-submit">
-						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"  type="submit" value="Submit" >Sign Up</button>
+						<button class="mdl-button  button button-primary"  type="submit" value="Submit" >Sign Up</button>
 					</div>
 				</form>
 				<div class="login-link">

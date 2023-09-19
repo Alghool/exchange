@@ -35,7 +35,7 @@
 						<div class="forgot-pass">Forgot Password?</div>
 					</div>
 					<div class="form-submit">
-						<button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Login Now</button>
+						<button class="mdl-button  button button-primary">Login Now</button>
 					</div>
 				</form>
 				<div class="login-link">
