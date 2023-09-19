@@ -4,7 +4,7 @@ namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
-class Twig extends \Daycry\Twig\Config\Twig
+class Twig extends \Alghool\Twig\Config\Twig
 {
     public $extension = "nana";
 	public $functions_safe = ['form_open', 'form_close', 'form_hidden', 'json_decode', 'form_error', 'form_hidden', 'set_value', 'csrf_field'];
