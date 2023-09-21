@@ -3936,6 +3936,11 @@ span.meta-title {
   padding: 5px;
 }
 
+.control-separator:before, .control-separator:after{
+  content: "--------";
+
+}
+
 @media (max-width: 768px) {
   .flex-list {
     display: flex;

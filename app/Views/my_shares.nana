@@ -25,13 +25,15 @@
 				<div class="col-sm-12 ">
 					{{ include('widgets/share_panel.nana', {share: share, tag: "listed"}) }}
 					{% if share.listed == 'no' %}
-						<div class="d-flex company-admin-control mb-5">
-							<div>
+						<div class="d-flex company-admin-control mb-5  large-control">
+							<div class="no-form-action">
 								<a href="/share/sellAll/{{ share.share_id }}">
 									<button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect button button-danger button-sm m-1" data-upgraded=",MaterialButton,MaterialRipple">
 										sell all shares <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 156.506px; height: 156.506px; transform: translate(-50%, -50%) translate(38px, 20px);"></span></span></button>
 								</a>
 							</div>
+
+							<div class="w-100 control-separator text-center d-md-none d-lg-none d-xl-none">&nbsp; OR &nbsp;</div>
 							<div class="d-flex company-admin-control">
 								<div class="">
 									<form id="signup_form" action="/share/sellShares" method="post" >
